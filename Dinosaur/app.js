@@ -34,11 +34,15 @@
         const weight = document.getElementById('weight').value;
         const diet = document.getElementById('diet').value;
         const height = (feet * 12) + inches;
-        human = new Human(name,height,weight,diet);
+        var human = new Human(name,height,weight,diet);
         return human;
     }
-    var input = humanInfo;
-    console.log(input)
+    document.getElementById("btn").addEventListener("click", function() {
+      var input = humanInfo;
+      console.log(input.inches)
+    });
+    
+    
     // Use IIFE to get human data from form
 
 
