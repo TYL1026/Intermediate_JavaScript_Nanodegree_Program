@@ -19,6 +19,7 @@
       }else{
         result += this.species + "has same height with you ";
       }
+      return result
     }
     // Create Dino Compare Method 2
     Dino.prototype.compareWeight = function(human){
@@ -30,6 +31,7 @@
       }else{
         result += this.species + "has same weight with you ";
       }
+      return result
     }
     // Create Dino Compare Method 3
     Dino.prototype.compareDiet = function(human){
@@ -41,6 +43,7 @@
       }else{
         result += this.species + "has same weight with you ";
       }
+      return result
     }
     function Human (name,height,weight,diet) {
       //if you were using species it would have been this.specie='human'
@@ -91,7 +94,7 @@
               <div class="grid-item">
               <h3>${data[i*3+j].species}</h3>
               <img src="images/${data[i*3+j].species.toLowerCase()}.png" alt="${data[i*3+j].species} image" />
-              <p>${data[i*3+j].fact ? data[i*3+j].fact : ""} 
+              <p>
               ${data[i*3+j].weight ? data[i*3+j].compareWeight(human) : ""} 
               ${data[i*3+j].height ? data[i*3+j].compareHeight(human) : ""}
               </p>
@@ -99,19 +102,18 @@
             }else{
               cell.innerHTML = `
               <div class="grid-item">
-              <h3>human</h3>
+              <h3>${data[i*3+j].name}</h3>
               <img src="images/human.png" alt="human image" />
-              <p>${data[i*3+j].fact ? data[i*3+j].fact : ""} 
-              ${data[i*3+j].weight ? data[i*3+j].weight : ""} 
-              ${data[i*3+j].height ? data[i*3+j].height: ""}
+              <p>
               </p>
               `
             }
           row.append(cell);
           }
-        table.append(row);
+        //table.append(row);
+        grid.append(row);
       }
-      grid.append(table);
+      //grid.append(table);
     }).catch(error => {
       console.error(error);
     });
