@@ -9,6 +9,8 @@ const root = document.getElementById('root')
 
 const updateStore = (store, newState) => {
     store = Object.assign(store, newState)
+    console.log("-----------")
+    console.log(store)
     render(root, store)
 }
 
@@ -36,6 +38,9 @@ const App = (state) => {
                     explanation are returned. These keywords could be used as auto-generated hashtags for twitter or instagram feeds;
                     but generally help with discoverability of relevant imagery.
                 </p>
+                <button type="button1">Curiosity</button>
+                <button type="button2">Opportunity</button>
+                <button type="button3">Spirit</button>
                 ${ImageOfTheDay(apod)}
             </section>
         </main>
@@ -43,6 +48,12 @@ const App = (state) => {
     `
 }
 
+const b1 = document.getElementById("button1")
+if(b1){
+    b1.addEventListener("click", function() {
+        console.log("-----------------------------");
+    });
+}
 // listening for load event because page should load before any JS is called
 window.addEventListener('load', () => {
     render(root, store)
@@ -100,6 +111,5 @@ const getImageOfTheDay = (state) => {
     fetch(`http://localhost:3000/apod`)
         .then(res => res.json())
         .then(apod => updateStore(store, { apod }))
-
     return data
 }
