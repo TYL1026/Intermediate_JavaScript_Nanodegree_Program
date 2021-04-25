@@ -9,8 +9,6 @@ const root = document.getElementById('root')
 
 const updateStore = (store, newState) => {
     store = Object.assign(store, newState)
-    console.log("-----------")
-    console.log(store)
     render(root, store)
 }
 
@@ -47,13 +45,15 @@ const App = (state) => {
         <footer></footer>
     `
 }
-
-const b1 = document.getElementById("button1")
-if(b1){
+const load = () => {
+    const b1 = document.getElementById("button1")
+    if(b1){
     b1.addEventListener("click", function() {
-        console.log("-----------------------------");
+        console.log("BUTTON1 IS HERE")
     });
+    }
 }
+window.onload = load;
 // listening for load event because page should load before any JS is called
 window.addEventListener('load', () => {
     render(root, store)
