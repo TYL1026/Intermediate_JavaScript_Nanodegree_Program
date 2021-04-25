@@ -36,24 +36,31 @@ const App = (state) => {
                     explanation are returned. These keywords could be used as auto-generated hashtags for twitter or instagram feeds;
                     but generally help with discoverability of relevant imagery.
                 </p>
-                <button type="button1">Curiosity</button>
-                <button type="button2">Opportunity</button>
-                <button type="button3">Spirit</button>
+                <button type="button" id="button1">Curiosity</button>
+                <button type="button" id="button2">Opportunity</button>
+                <button type="button" id="button3">Spirit</button>
                 ${ImageOfTheDay(apod)}
+                <script>
+            
+                </script>
             </section>
         </main>
         <footer></footer>
     `
 }
-const load = () => {
-    const b1 = document.getElementById("button1")
-    if(b1){
-    b1.addEventListener("click", function() {
+document.addEventListener("DOMContentLoaded", function(event) {
+    console.log('All assets are loaded');
+    
+    const b1 = document.getElementById("button1").addEventListener("click", function() {
         console.log("BUTTON1 IS HERE")
-    });
-    }
-}
-window.onload = load;
+        });
+    const b2 = document.getElementById("button2").addEventListener("click", function() {
+        console.log("BUTTON2 IS HERE")
+        });
+    const b3 = document.getElementById("button3").addEventListener("click", function() {
+        console.log("BUTTON3 IS HERE")
+        });
+});
 // listening for load event because page should load before any JS is called
 window.addEventListener('load', () => {
     render(root, store)
