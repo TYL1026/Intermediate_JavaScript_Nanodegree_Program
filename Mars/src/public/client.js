@@ -114,5 +114,5 @@ const getRoverData = (name) =>{
     console.log(name)
     fetch(`http://localhost:3000/${name}`)
         .then(res => res.json())
-        .then(RoverData => updateStore(store, RoverData))
+        .then(RoverData => console.log(RoverData))
 }
