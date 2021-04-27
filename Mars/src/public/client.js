@@ -3,7 +3,8 @@ let store = {
     apod: '',
     rovers: ['Curiosity', 'Opportunity', 'Spirit'],
 }
-
+let RoverData = {
+}
 // add our markup to the page
 const root = document.getElementById('root')
 
@@ -36,9 +37,9 @@ const App = (state) => {
                     explanation are returned. These keywords could be used as auto-generated hashtags for twitter or instagram feeds;
                     but generally help with discoverability of relevant imagery.
                 </p>
-                <button type="button" id="button1">Curiosity</button>
-                <button type="button" id="button2">Opportunity</button>
-                <button type="button" id="button3">Spirit</button>
+                <button type="button" id="button1" onclick="getRoverData('curiosity')">Curiosity</button>
+                <button type="button" id="button2" onclick="getRoverData('opportunity')">Opportunity</button>
+                <button type="button" id="button3" onclick="getRoverData('spirit')">Spirit</button>
                 ${ImageOfTheDay(apod)}
                 <script>
             
@@ -48,19 +49,7 @@ const App = (state) => {
         <footer></footer>
     `
 }
-document.addEventListener("DOMContentLoaded", function(event) {
-    console.log('All assets are loaded');
-    
-    const b1 = document.getElementById("button1").addEventListener("click", function() {
-        console.log("BUTTON1 IS HERE")
-        });
-    const b2 = document.getElementById("button2").addEventListener("click", function() {
-        console.log("BUTTON2 IS HERE")
-        });
-    const b3 = document.getElementById("button3").addEventListener("click", function() {
-        console.log("BUTTON3 IS HERE")
-        });
-});
+
 // listening for load event because page should load before any JS is called
 window.addEventListener('load', () => {
     render(root, store)
@@ -119,4 +108,11 @@ const getImageOfTheDay = (state) => {
         .then(res => res.json())
         .then(apod => updateStore(store, { apod }))
     return data
+}
+
+const getRoverData = (name) =>{
+    console.log(name)
+    fetch(`http://localhost:3000/${name}`)
+        .then(res => res.json())
+        .then(RoverData => updateStore(store, RoverData))
 }
