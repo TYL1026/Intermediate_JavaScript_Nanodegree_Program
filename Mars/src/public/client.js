@@ -141,7 +141,13 @@ const getImageOfTheDay = (state) => {
 }
 
 const getRoverData = (name) =>{
+    if(name){
     fetch(`http://localhost:3000/rovername/${name}`)
         .then(res => res.json())
         .then(apod => updateStore(store,{apod}))
+
+    }else{
+        const apod = ''
+        updateStore(store,{apod})
+    }
 }
