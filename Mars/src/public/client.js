@@ -1,14 +1,16 @@
-let store = {
-    user: { name: "Student" },
-    apod: '',
-    rovers: ['Curiosity', 'Opportunity', 'Spirit'],
-}
+const store =  Immutable.Map({
+    user: Immutable.Map({
+      name: "Human",
+    }),
+    apod: "",
+    rovers: Immutable.List(["Curiosity", "Opportunity", "Spirit"]),
+});
 
 // add our markup to the page
 const root = document.getElementById('root')
 
 const updateStore = (store, newState) => {
-    store = Object.assign(store, newState)
+    store = store.merge(store, newState)
     render(root, store)
 }
 
