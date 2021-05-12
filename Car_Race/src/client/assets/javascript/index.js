@@ -90,7 +90,6 @@ async function handleCreateRace() {
 	// TODO - call the async function startRace
 	const start = await startRace(store.race_id)
 	// TODO - call the async function runRace
-	
 	// const run = await runRace(store.race_id)
 }
 
@@ -98,9 +97,17 @@ function runRace(raceID) {
 	return new Promise(resolve => {
 	// TODO - use Javascript's built in setInterval method to get race info every 500ms
 		const count = setInterval(async function(){
-			const a = await getRace(raceID)
-			console.log(a)
-		},1000)
+			const info = await getRace(raceID)
+			console.log(info)
+			if (info.status == "in-progress"){
+				renderAt('#leaderBoard', raceProgress(info.positions))
+			}else{
+				clearInterval(raceInterval)
+				renderAt('#race', resultsView(res.positions))
+				reslove(info)
+			}
+			
+		},500)
 	/* 
 		TODO - if the race info status property is "in-progress", update the leaderboard by calling:
 
@@ -133,6 +140,7 @@ async function runCountdown() {
 				}
 			}, 1000)
 			// run this DOM manipulation to decrement the countdown for the user
+			console.log("11111111111111111")
 			resolve()
 
 			// TODO - if the countdown is done, clear the interval, resolve the promise, and return
@@ -156,6 +164,7 @@ function handleSelectPodRacer(target) {
 	target.classList.add('selected')
 
 	// TODO - save the selected racer to the store
+	store.player_id = parseInt(target.id);
 }
 
 function handleSelectTrack(target) {
@@ -171,6 +180,7 @@ function handleSelectTrack(target) {
 	target.classList.add('selected')
 
 	// TODO - save the selected track id to the store
+	store.track_id = parseInt(target.id);
 	
 }
 
@@ -278,7 +288,7 @@ function resultsView(positions) {
 }
 
 function raceProgress(positions) {
-	let userPlayer = positions.find(e => e.id === store.player_id)
+	let userPlayer = positions.find(e => e.id === parseInt(store.player_id))
 	userPlayer.driver_name += " (you)"
 
 	positions = positions.sort((a, b) => (a.segment > b.segment) ? -1 : 1)
