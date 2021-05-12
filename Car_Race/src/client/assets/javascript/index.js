@@ -133,7 +133,7 @@ async function runCountdown() {
 
 		return new Promise(resolve => {
 			// TODO - use Javascript's built in setInterval method to count down once per second
-			const count = setInterval(function(){
+			const c = setInterval(function count(){
 				document.getElementById('big-numbers').innerHTML = --timer
 				if (timer == 0){
 					clearInterval(count)
