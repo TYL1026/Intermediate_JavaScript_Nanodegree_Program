@@ -1,7 +1,7 @@
 // PROVIDED CODE BELOW (LINES 1 - 80) DO NOT REMOVE
 
 // The store will hold all information needed globally
-var store = {
+let store = {
 	track_id: undefined,
 	player_id: undefined,
 	race_id: undefined,
@@ -76,10 +76,14 @@ async function delay(ms) {
 async function handleCreateRace() {
 	
 	// TODO - Get player_id and track_id from the store
-	var player_id = store.player_id
-	var track_id = store.track_id
+	const player_id = store.player_id
+	const track_id = store.track_id
 	// const race = TODO - invoke the API call to create the race, then save the result
-	const race = await createRace(player_id, track_id)
+	try{
+		const race = await createRace(player_id, track_id)
+	}catch(error){
+		console.error(error)
+	}
 	// TODO - update the store with the race id
 	store.race_id = race.ID-1
 	// render starting UI
@@ -291,7 +295,7 @@ function resultsView(positions) {
 }
 
 function raceProgress(positions) {
-	let userPlayer = positions.find(e => e.id === parseInt(store.player_id))
+	const userPlayer = positions.find(e => e.id === parseInt(store.player_id))
 	userPlayer.driver_name += " (you)"
 
 	positions = positions.sort((a, b) => (a.segment > b.segment) ? -1 : 1)
