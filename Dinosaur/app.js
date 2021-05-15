@@ -113,9 +113,8 @@ document.getElementById("btn").addEventListener("click",  function() {
             const newDiv = document.createElement('div')
             newDiv.classList.add("grid-item")
             if (index != 4){
-                if (index == 7){
+                if (index != 7){
                     const rando =  Math.floor(Math.random()*5)
-                    console.log(rando)
                     switch(rando){
                         case 1:
                             dino.fact = dino.compareHeight(human);
