@@ -1,3 +1,4 @@
+[download.pdf](https://github.com/TYL1026/Intermediate_JavaScript_Program/files/6488405/download.pdf)
 # Intermediate_JavaScript_Program
 Every Project under this repo is a learning project
 ## Car Race
